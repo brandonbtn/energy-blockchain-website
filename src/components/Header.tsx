@@ -9,12 +9,13 @@ import LanguageSelector from './LanguageSelector'
 import { useTranslation } from 'react-i18next'
 
 const Header = () => {
-  const { t } = useTranslation()
+  const { t, ready } = useTranslation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isWalletModalOpen, setIsWalletModalOpen] = useState(false)
   const [connectedWallet, setConnectedWallet] = useState<string | null>(null)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,15 +29,16 @@ const Header = () => {
   useEffect(() => {
     const auth = localStorage.getItem('isAuthenticated')
     setIsAuthenticated(auth === 'true')
+    setMounted(true)
   }, [])
 
   const navigationItems = [
-    { name: t('nav.technology'), href: '/technology' },
-    { name: t('nav.ecosystem'), href: '/ecosystem' },
-    { name: t('nav.roadmap'), href: '/roadmap' },
-    { name: t('nav.team'), href: '/team' },
-    { name: t('nav.documentation'), href: '/docs' },
-    { name: t('nav.dashboard'), href: '/dashboard' },
+    { name: mounted && ready ? t('nav.technology') : 'Technology', href: '/technology' },
+    { name: mounted && ready ? t('nav.ecosystem') : 'Ecosystem', href: '/ecosystem' },
+    { name: mounted && ready ? t('nav.roadmap') : 'Roadmap', href: '/roadmap' },
+    { name: mounted && ready ? t('nav.team') : 'Team', href: '/team' },
+    { name: mounted && ready ? t('nav.documentation') : 'Documentation', href: '/docs' },
+    { name: mounted && ready ? t('nav.dashboard') : 'Dashboard', href: '/dashboard' },
   ]
 
   return (
@@ -87,7 +89,7 @@ const Header = () => {
                 href="/dashboard"
                 className="px-6 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full font-semibold hover:from-green-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105"
               >
-                {t('nav.dashboard')}
+                {mounted && ready ? t('nav.dashboard') : 'Dashboard'}
               </Link>
             ) : (
               <>
@@ -95,13 +97,13 @@ const Header = () => {
                   href="/login"
                   className="px-6 py-2 text-white hover:text-green-400 transition-colors font-semibold"
                 >
-                  {t('nav.signin')}
+                  {mounted && ready ? t('nav.signin') : 'Sign In'}
                 </Link>
                 <Link
                   href="/signup"
                   className="px-6 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full font-semibold hover:from-green-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105"
                 >
-                  {t('nav.getStarted')}
+                  {mounted && ready ? t('nav.getStarted') : 'Get Started'}
                 </Link>
               </>
             )}
@@ -142,7 +144,7 @@ const Header = () => {
                     href="/dashboard"
                     className="px-6 py-2 text-gray-300 hover:text-white transition-colors text-left"
                   >
-                    {t('nav.dashboard')}
+                    {mounted && ready ? t('nav.dashboard') : 'Dashboard'}
                   </Link>
                   <button
                     onClick={() => {

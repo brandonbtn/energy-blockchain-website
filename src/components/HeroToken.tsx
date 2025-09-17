@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   Shield,
@@ -16,7 +16,12 @@ import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 
 const HeroToken = () => {
-  const { t } = useTranslation()
+  const { t, ready } = useTranslation()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
   const tokenMetrics = [
     { label: 'Total Supply', value: '1B', suffix: ' ENERGY' },
     { label: 'Current Price', value: '$0.125', prefix: '' },
@@ -88,7 +93,7 @@ const HeroToken = () => {
           >
             <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-full backdrop-blur-xl">
               <Star className="h-4 w-4 text-yellow-400 mr-2" />
-              <span className="text-green-400 font-medium">{t('hero.subtitle')}</span>
+              <span className="text-green-400 font-medium">{mounted && ready ? t('hero.subtitle') : 'ENERGY Token - Powering the Soltolaria Ecosystem'}</span>
               <Star className="h-4 w-4 text-yellow-400 ml-2" />
             </div>
           </motion.div>
@@ -106,7 +111,7 @@ const HeroToken = () => {
               </span>
             </h1>
             <p className="text-2xl md:text-3xl text-white font-light">
-              {t('hero.title')}
+              {mounted && ready ? t('hero.title') : 'The Future of Sustainable Energy Trading'}
             </p>
           </motion.div>
 

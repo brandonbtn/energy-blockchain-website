@@ -4,13 +4,19 @@ import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Globe, ChevronDown, Check } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { SUPPORTED_LANGUAGES, LANGUAGE_FAMILIES } from '@/lib/i18n'
+import { SUPPORTED_LANGUAGES } from '@/lib/i18n-client'
 
 export default function LanguageSelector() {
   const { i18n } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
-  const currentLang = i18n.language
+  const [currentLang, setCurrentLang] = useState('en')
+
+  useEffect(() => {
+    setMounted(true)
+    setCurrentLang(i18n.language || 'en')
+  }, [i18n.language])
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -26,10 +32,24 @@ export default function LanguageSelector() {
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng)
+    localStorage.setItem('preferredLanguage', lng)
+    setCurrentLang(lng)
     setIsOpen(false)
+
+    // Update HTML lang attribute
+    document.documentElement.lang = lng
+    document.documentElement.dir = lng === 'ar' ? 'rtl' : 'ltr'
   }
 
   // Group languages by family
+  const LANGUAGE_FAMILIES = {
+    indigenous: ['fne', 'cr', 'oj'],
+    european: ['en', 'fr', 'es', 'pt', 'de'],
+    asian: ['zh', 'ja', 'ko', 'hi'],
+    middleEastern: ['ar'],
+    slavic: ['ru']
+  }
+
   const groupedLanguages = Object.entries(SUPPORTED_LANGUAGES).reduce((acc, [code, name]) => {
     let family = 'other'
     for (const [familyName, codes] of Object.entries(LANGUAGE_FAMILIES)) {
@@ -57,7 +77,7 @@ export default function LanguageSelector() {
       hi: '🇮🇳',
       ru: '🇷🇺',
       fne: '🌲', // Tree for First Nations
-      cr: '🦞', // Eagle for Cree
+      cr: '🦅', // Eagle for Cree
       oj: '🐻' // Bear for Ojibwe
     }
     return flags[langCode] || '🌍'
@@ -75,6 +95,19 @@ export default function LanguageSelector() {
     return labels[family] || family
   }
 
+  // Don't render until mounted to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <div className="relative">
+        <button className="flex items-center space-x-2 px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-white">
+          <Globe className="h-4 w-4 text-green-400" />
+          <span className="hidden sm:block text-sm font-medium">English</span>
+          <ChevronDown className="h-4 w-4" />
+        </button>
+      </div>
+    )
+  }
+
   return (
     <div className="relative" ref={dropdownRef}>
       <button
@@ -84,7 +117,7 @@ export default function LanguageSelector() {
       >
         <Globe className="h-4 w-4 text-green-400 group-hover:rotate-12 transition-transform" />
         <span className="hidden sm:block text-sm font-medium">
-          {getFlagEmoji(currentLang)} {SUPPORTED_LANGUAGES[currentLang as keyof typeof SUPPORTED_LANGUAGES] || 'Select Language'}
+          {getFlagEmoji(currentLang)} {SUPPORTED_LANGUAGES[currentLang as keyof typeof SUPPORTED_LANGUAGES] || 'English'}
         </span>
         <span className="sm:hidden text-sm font-medium">
           {getFlagEmoji(currentLang)}
