@@ -1,0 +1,51 @@
+{
+  "name": "energy-desktop",
+  "version": "1.0.0",
+  "description": "ENERGY Token Desktop App - Quick access to your energy trading platform",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "dist": "electron-builder --publish=never",
+    "pack": "electron-builder --dir"
+  },
+  "keywords": ["energy", "blockchain", "desktop", "trading"],
+  "author": "ENERGY Token Team",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "axios": "^1.12.2",
+    "electron": "^38.1.1",
+    "electron-builder": "^26.0.12",
+    "electron-store": "^10.1.0"
+  },
+  "dependencies": {
+    "electron-updater": "^6.6.2"
+  },
+  "build": {
+    "appId": "com.energytoken.desktop",
+    "productName": "ENERGY Desktop",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!**/*.ts",
+      "!*.map",
+      "!package-lock.json",
+      "!.git"
+    ],
+    "mac": {
+      "category": "public.app-category.finance",
+      "icon": "assets/icon.icns"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icon.png"
+    }
+  }
+}
