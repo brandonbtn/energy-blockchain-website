@@ -8,8 +8,7 @@ import CountUp from 'react-countup'
 const Hero = () => {
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
+    animate: { opacity: 1, y: 0 }
   }
 
   const staggerContainer = {
@@ -74,6 +73,7 @@ const Hero = () => {
           {/* Announcement Banner */}
           <motion.div
             variants={fadeInUp}
+            transition={{ duration: 0.6 }}
             className="inline-flex items-center px-6 py-2 mb-8 bg-green-500/10 border border-green-500/20 rounded-full backdrop-blur-sm"
           >
             <Zap className="h-4 w-4 text-green-400 mr-2" />
@@ -85,6 +85,7 @@ const Hero = () => {
           {/* Main Headline */}
           <motion.h1
             variants={fadeInUp}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight"
           >
             The Future of{' '}
@@ -97,6 +98,7 @@ const Hero = () => {
           {/* Subtitle */}
           <motion.p
             variants={fadeInUp}
+            transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed"
           >
             World's first blockchain powered by renewable energy with{' '}
