@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import {
   LayoutDashboard,
   TrendingUp,
@@ -214,6 +215,25 @@ const DashboardPage = () => {
               <nav className="hidden md:flex items-center space-x-6">
                 {tabs.map((tab) => {
                   const Icon = tab.icon
+
+                  // Use Link for portfolio, trading, and analytics pages
+                  if (tab.id === 'portfolio' || tab.id === 'trading' || tab.id === 'analytics') {
+                    return (
+                      <Link
+                        key={tab.id}
+                        href={`/dashboard/${tab.id}`}
+                        className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all ${
+                          activeTab === tab.id
+                            ? 'bg-green-500/20 text-green-400'
+                            : 'text-gray-400 hover:text-white'
+                        }`}
+                      >
+                        <Icon className="h-4 w-4" />
+                        <span>{tab.label}</span>
+                      </Link>
+                    )
+                  }
+
                   return (
                     <button
                       key={tab.id}
