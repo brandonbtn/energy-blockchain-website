@@ -3,19 +3,11 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-// Import only essential components for homepage
+// Import minimal components for clean homepage
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import HeroEnhanced from '@/components/HeroEnhanced'
-import LiveStats from '@/components/LiveStats'
-import Features from '@/components/Features'
-import Metrics from '@/components/Metrics'
-import Partners from '@/components/Partners'
-import Newsletter from '@/components/Newsletter'
-import EnergyTrading from '@/components/EnergyTrading'
-import CarbonMarketplace from '@/components/CarbonMarketplace'
-import BlogSection from '@/components/BlogSection'
-import ExploreSection from '@/components/ExploreSection'
+import QuickNavigation from '@/components/QuickNavigation'
 
 export default function HomePage() {
   return (
@@ -30,35 +22,11 @@ export default function HomePage() {
 
       {/* Main Content */}
       <main className="relative">
-        {/* Enhanced Hero Section with Web3 Features */}
+        {/* Enhanced Hero Section */}
         <HeroEnhanced />
 
-        {/* Live Blockchain Statistics */}
-        <LiveStats />
-
-        {/* Live Network Metrics Dashboard */}
-        <Metrics />
-
-        {/* Energy Trading Platform Section */}
-        <EnergyTrading />
-
-        {/* Carbon Credits Marketplace */}
-        <CarbonMarketplace />
-
-        {/* Core Features Grid */}
-        <Features />
-
-        {/* Explore Our Ecosystem - Links to other pages */}
-        <ExploreSection />
-
-        {/* Strategic Partners */}
-        <Partners />
-
-        {/* Blog & News Section */}
-        <BlogSection />
-
-        {/* Newsletter & Community */}
-        <Newsletter />
+        {/* Quick Navigation to All Pages */}
+        <QuickNavigation />
       </main>
 
       {/* Footer with Links */}
