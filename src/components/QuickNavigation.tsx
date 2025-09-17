@@ -53,6 +53,13 @@ const QuickNavigation = () => {
 
   const platformLinks = [
     {
+      title: 'Live Stats',
+      description: 'Real-time metrics',
+      href: '/live-stats',
+      icon: BarChart3,
+      gradient: 'from-cyan-500 to-blue-600'
+    },
+    {
       title: 'Energy Trading',
       description: 'Trade renewable energy',
       href: '/energy-trading',
@@ -70,7 +77,7 @@ const QuickNavigation = () => {
       title: 'Features',
       description: 'Platform capabilities',
       href: '/features',
-      icon: BarChart3,
+      icon: Shield,
       gradient: 'from-indigo-500 to-purple-600'
     },
     {
