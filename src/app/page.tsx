@@ -29,13 +29,8 @@ export default function HomePage() {
         <QuickNavigation />
       </main>
 
-      {/* Footer with Links */}
+      {/* Footer */}
       <Footer />
-
-      {/* Live Energy Flow Animation Background */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="energy-flow-animation" />
-      </div>
     </div>
   )
 }

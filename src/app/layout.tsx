@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import I18nProvider from '@/components/I18nProvider'
 
 export const metadata: Metadata = {
   title: 'ENERGY Token - Powering Soltolaria\'s Decentralized Energy Marketplace',
@@ -89,9 +90,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="antialiased">
-        <div id="root">
-          {children}
-        </div>
+        <I18nProvider>
+          <div id="root">
+            {children}
+          </div>
+        </I18nProvider>
 
         {/* Energy particles background effect */}
         <div className="energy-particles">

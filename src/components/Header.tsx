@@ -5,8 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Zap, ChevronDown, Wallet } from 'lucide-react'
 import Link from 'next/link'
 import WalletConnect from './WalletConnect'
+import LanguageSelector from './LanguageSelector'
+import { useTranslation } from 'react-i18next'
 
 const Header = () => {
+  const { t } = useTranslation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isWalletModalOpen, setIsWalletModalOpen] = useState(false)
@@ -28,12 +31,12 @@ const Header = () => {
   }, [])
 
   const navigationItems = [
-    { name: 'Technology', href: '/technology' },
-    { name: 'Ecosystem', href: '/ecosystem' },
-    { name: 'Roadmap', href: '/roadmap' },
-    { name: 'Team', href: '/team' },
-    { name: 'Documentation', href: '/docs' },
-    { name: 'Dashboard', href: '/dashboard' },
+    { name: t('nav.technology'), href: '/technology' },
+    { name: t('nav.ecosystem'), href: '/ecosystem' },
+    { name: t('nav.roadmap'), href: '/roadmap' },
+    { name: t('nav.team'), href: '/team' },
+    { name: t('nav.documentation'), href: '/docs' },
+    { name: t('nav.dashboard'), href: '/dashboard' },
   ]
 
   return (
@@ -78,12 +81,13 @@ const Header = () => {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
+            <LanguageSelector />
             {isAuthenticated ? (
               <Link
                 href="/dashboard"
                 className="px-6 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full font-semibold hover:from-green-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105"
               >
-                Dashboard
+                {t('nav.dashboard')}
               </Link>
             ) : (
               <>
@@ -91,13 +95,13 @@ const Header = () => {
                   href="/login"
                   className="px-6 py-2 text-white hover:text-green-400 transition-colors font-semibold"
                 >
-                  Sign In
+                  {t('nav.signin')}
                 </Link>
                 <Link
                   href="/signup"
                   className="px-6 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full font-semibold hover:from-green-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105"
                 >
-                  Get Started
+                  {t('nav.getStarted')}
                 </Link>
               </>
             )}
@@ -133,11 +137,12 @@ const Header = () => {
                   </Link>
                 ))}
                 <div className="flex flex-col space-y-3 pt-4">
+                  <LanguageSelector />
                   <Link
                     href="/dashboard"
                     className="px-6 py-2 text-gray-300 hover:text-white transition-colors text-left"
                   >
-                    Launch App
+                    {t('nav.dashboard')}
                   </Link>
                   <button
                     onClick={() => {
