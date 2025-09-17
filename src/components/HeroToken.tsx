@@ -1,10 +1,8 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import {
-  Zap,
-  TrendingUp,
   Shield,
   Globe,
   Users,
@@ -15,20 +13,13 @@ import {
   Star
 } from 'lucide-react'
 import Link from 'next/link'
-import CountUp from 'react-countup'
 
 const HeroToken = () => {
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    setIsVisible(true)
-  }, [])
-
   const tokenMetrics = [
-    { label: 'Total Supply', value: '1,000,000,000', suffix: ' ENERGY' },
-    { label: 'Current Price', value: '0.125', prefix: '$' },
-    { label: 'Market Cap', value: '125,000,000', prefix: '$' },
-    { label: 'Holders', value: '50,000', suffix: '+' }
+    { label: 'Total Supply', value: '1B', suffix: ' ENERGY' },
+    { label: 'Current Price', value: '$0.125', prefix: '' },
+    { label: 'Market Cap', value: '$125M', prefix: '' },
+    { label: 'Holders', value: '50,000+', suffix: '' }
   ]
 
   const features = [
@@ -46,7 +37,9 @@ const HeroToken = () => {
 
         {/* Animated Grid */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%2310b981" fill-opacity="0.03"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] animate-pulse" />
+          <div className="absolute inset-0 opacity-30" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          }} />
         </div>
 
         {/* Floating Orbs */}
@@ -106,7 +99,7 @@ const HeroToken = () => {
             className="text-center mb-6"
           >
             <h1 className="text-6xl md:text-8xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-green-400 via-emerald-400 to-green-400 bg-clip-text text-transparent animate-gradient">
+              <span className="bg-gradient-to-r from-green-400 via-emerald-400 to-green-400 bg-clip-text text-transparent">
                 ENERGY
               </span>
             </h1>
@@ -122,7 +115,7 @@ const HeroToken = () => {
             transition={{ delay: 0.4 }}
             className="text-lg md:text-xl text-gray-300 text-center max-w-4xl mx-auto mb-12"
           >
-            ENERGY is the native utility token of Soltolaria's revolutionary decentralized energy marketplace.
+            ENERGY is the native utility token of Soltolaria&apos;s revolutionary decentralized energy marketplace.
             Trade renewable energy, earn rewards, and participate in the future of sustainable power distribution.
           </motion.p>
 
@@ -140,16 +133,7 @@ const HeroToken = () => {
               >
                 <p className="text-gray-400 text-sm mb-2">{metric.label}</p>
                 <p className="text-2xl md:text-3xl font-bold text-white">
-                  {metric.prefix}
-                  {isVisible && (
-                    <CountUp
-                      end={parseFloat(metric.value.replace(/,/g, ''))}
-                      duration={2}
-                      separator=","
-                      decimals={metric.prefix === '$' && parseFloat(metric.value) < 1 ? 3 : 0}
-                    />
-                  )}
-                  {metric.suffix}
+                  {metric.prefix}{metric.value}{metric.suffix}
                 </p>
               </div>
             ))}
@@ -250,18 +234,6 @@ const HeroToken = () => {
           </motion.div>
         </motion.div>
       </div>
-
-      <style jsx>{`
-        @keyframes gradient {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        .animate-gradient {
-          background-size: 200% 200%;
-          animation: gradient 3s ease infinite;
-        }
-      `}</style>
     </section>
   )
 }
