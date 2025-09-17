@@ -2,7 +2,6 @@
   "name": "energy-blockchain-website",
   "version": "1.0.0",
   "description": "Official website for ENERGY Blockchain - Renewable Energy Trading Platform",
-  "main": "index.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
