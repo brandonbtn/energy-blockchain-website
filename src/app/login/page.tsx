@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import '../lib/i18n-client'
+import '@/lib/i18n-client'
 import {
   Mail,
   Lock,

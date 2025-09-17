@@ -59,7 +59,7 @@ export default function LanguageSelector() {
       }
     }
     if (!acc[family]) acc[family] = []
-    acc[family].push({ code, name })
+    acc[family].push({ code, name: name as string })
     return acc
   }, {} as Record<string, Array<{ code: string; name: string }>>)
 

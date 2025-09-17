@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
-import '../lib/i18n-client'
+import '@/lib/i18n-client'
 import {
   LayoutDashboard,
   TrendingUp,

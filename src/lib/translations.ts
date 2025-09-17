@@ -1,3 +1,20 @@
+export const SUPPORTED_LANGUAGES = {
+  en: 'English',
+  fr: 'Français',
+  fne: 'First Nations English',
+  cr: 'ᓀᐦᐃᔭᐍᐏᐣ (Cree)',
+  oj: 'ᐊᓂᔑᓈᐯᒧᐎᓐ (Ojibwe)',
+  es: 'Español',
+  pt: 'Português',
+  de: 'Deutsch',
+  zh: '中文',
+  ja: '日本語',
+  ko: '한국어',
+  ar: 'العربية',
+  hi: 'हिन्दी',
+  ru: 'Русский'
+}
+
 export const translations = {
   en: {
     translation: {
@@ -68,7 +85,6 @@ export const translations = {
       'quick.carbonCreditsDesc': 'Offset emissions',
       'quick.features': 'Features',
       'quick.featuresDesc': 'Platform capabilities',
-      'quick.explore': 'Explore',
 
       // Footer
       'footer.quickLinks': 'Quick Links',
@@ -364,7 +380,6 @@ export const translations = {
       'quick.carbonCreditsDesc': 'Compenser les émissions',
       'quick.features': 'Fonctionnalités',
       'quick.featuresDesc': 'Capacités de la plateforme',
-      'quick.explore': 'Explorer',
 
       // Footer
       'footer.quickLinks': 'Liens rapides',
