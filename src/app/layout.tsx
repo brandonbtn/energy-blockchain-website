@@ -1,0 +1,137 @@
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
+
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata: Metadata = {
+  title: 'ENERGY Blockchain - Renewable Energy Trading Platform',
+  description: 'The world\'s first renewable energy blockchain with 65,000+ TPS, carbon credits, and sustainable DeFi protocols. Join the future of clean energy trading.',
+  keywords: [
+    'blockchain',
+    'renewable energy',
+    'carbon credits',
+    'DeFi',
+    'sustainability',
+    'clean energy',
+    'proof of energy',
+    'energy trading',
+    'climate change',
+    'green finance'
+  ],
+  authors: [{ name: 'ENERGY Blockchain Team' }],
+  creator: 'ENERGY Blockchain',
+  publisher: 'ENERGY Blockchain',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://energyblockchain.org'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'ENERGY Blockchain - Renewable Energy Trading Platform',
+    description: 'The world\'s first renewable energy blockchain with 65,000+ TPS, carbon credits, and sustainable DeFi protocols.',
+    url: 'https://energyblockchain.org',
+    siteName: 'ENERGY Blockchain',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'ENERGY Blockchain Platform',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ENERGY Blockchain - Renewable Energy Trading Platform',
+    description: 'The world\'s first renewable energy blockchain with 65,000+ TPS, carbon credits, and sustainable DeFi protocols.',
+    images: ['/twitter-image.png'],
+    creator: '@energyblockchain',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code',
+  },
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#22c55e" />
+        <meta name="msapplication-TileColor" content="#22c55e" />
+        <meta name="theme-color" content="#22c55e" />
+
+        {/* Preconnect to external domains */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
+      <body className={`${inter.className} antialiased`}>
+        <div id="root">
+          {children}
+        </div>
+
+        {/* Energy particles background effect */}
+        <div className="energy-particles">
+          {/* Particles will be generated via JavaScript */}
+        </div>
+
+        {/* Analytics and tracking scripts would go here */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Create floating energy particles
+              function createEnergyParticles() {
+                const container = document.querySelector('.energy-particles');
+                if (!container) return;
+
+                const particleCount = 50;
+
+                for (let i = 0; i < particleCount; i++) {
+                  const particle = document.createElement('div');
+                  particle.className = 'energy-particle';
+                  particle.style.left = Math.random() * 100 + '%';
+                  particle.style.animationDelay = Math.random() * 8 + 's';
+                  particle.style.animationDuration = (8 + Math.random() * 4) + 's';
+                  container.appendChild(particle);
+                }
+              }
+
+              // Initialize particles when page loads
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', createEnergyParticles);
+              } else {
+                createEnergyParticles();
+              }
+            `,
+          }}
+        />
+      </body>
+    </html>
+  )
+}

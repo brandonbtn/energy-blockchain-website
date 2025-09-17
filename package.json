@@ -1,0 +1,53 @@
+{
+  "name": "energy-blockchain-website",
+  "version": "1.0.0",
+  "description": "Official website for ENERGY Blockchain - Renewable Energy Trading Platform",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next export",
+    "deploy": "npm run build && npm run export"
+  },
+  "keywords": [
+    "blockchain",
+    "renewable-energy",
+    "carbon-credits",
+    "defi",
+    "sustainability",
+    "web3"
+  ],
+  "author": "ENERGY Blockchain Team",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^14.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.3.3",
+    "@types/node": "^20.10.5",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "tailwindcss": "^3.4.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "framer-motion": "^10.16.16",
+    "lucide-react": "^0.294.0",
+    "recharts": "^2.8.0",
+    "@headlessui/react": "^1.7.17",
+    "clsx": "^2.0.0",
+    "date-fns": "^2.30.0",
+    "react-intersection-observer": "^9.5.3",
+    "react-countup": "^6.5.0",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-dropdown-menu": "^2.0.6"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.0.4",
+    "@tailwindcss/typography": "^0.5.10",
+    "@tailwindcss/forms": "^0.5.7"
+  }
+}
