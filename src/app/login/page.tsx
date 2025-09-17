@@ -1,7 +1,9 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
+import '../lib/i18n-client'
 import {
   Mail,
   Lock,
@@ -21,7 +23,13 @@ import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
   const router = useRouter()
+  const { t, ready } = useTranslation()
+  const [mounted, setMounted] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
   const [isLoading, setIsLoading] = useState(false)
   const [rememberMe, setRememberMe] = useState(false)
   const [loginMethod, setLoginMethod] = useState<'email' | 'wallet'>('email')
@@ -42,12 +50,12 @@ export default function LoginPage() {
 
     // Basic validation
     if (!formData.email) {
-      setErrors(prev => ({ ...prev, email: 'Email is required' }))
+      setErrors(prev => ({ ...prev, email: mounted && ready ? t('auth.emailRequired') : 'Email is required' }))
       setIsLoading(false)
       return
     }
     if (!formData.password) {
-      setErrors(prev => ({ ...prev, password: 'Password is required' }))
+      setErrors(prev => ({ ...prev, password: mounted && ready ? t('auth.passwordRequired') : 'Password is required' }))
       setIsLoading(false)
       return
     }
@@ -67,16 +75,16 @@ export default function LoginPage() {
     setIsLoading(true)
     // Simulate wallet connection
     setTimeout(() => {
-      alert('Wallet connection feature coming soon!')
+      alert(mounted && ready ? t('auth.walletComingSoon') : 'Wallet connection feature coming soon!')
       setIsLoading(false)
     }, 1000)
   }
 
   const features = [
-    'Real-time portfolio tracking',
-    'Advanced trading tools',
-    'Staking rewards up to 25% APY',
-    'Exclusive member benefits'
+    mounted && ready ? t('auth.feature1') : 'Real-time portfolio tracking',
+    mounted && ready ? t('auth.feature2') : 'Advanced trading tools',
+    mounted && ready ? t('auth.feature3') : 'Staking rewards up to 25% APY',
+    mounted && ready ? t('auth.feature4') : 'Exclusive member benefits'
   ]
 
   return (
@@ -128,8 +136,8 @@ export default function LoginPage() {
                     <Zap className="h-8 w-8 text-white" />
                   </div>
                 </Link>
-                <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
-                <p className="text-gray-400">Sign in to access your ENERGY dashboard</p>
+                <h1 className="text-3xl font-bold text-white mb-2">{mounted && ready ? t('auth.welcomeBack') : 'Welcome Back'}</h1>
+                <p className="text-gray-400">{mounted && ready ? t('auth.signInMessage') : 'Sign in to access your ENERGY dashboard'}</p>
               </div>
 
               {/* Login Method Tabs */}
@@ -143,7 +151,7 @@ export default function LoginPage() {
                   }`}
                 >
                   <Mail className="h-4 w-4 inline mr-2" />
-                  Email
+                  {mounted && ready ? t('auth.email') : 'Email'}
                 </button>
                 <button
                   onClick={() => setLoginMethod('wallet')}
@@ -154,7 +162,7 @@ export default function LoginPage() {
                   }`}
                 >
                   <Wallet className="h-4 w-4 inline mr-2" />
-                  Wallet
+                  {mounted && ready ? t('auth.wallet') : 'Wallet'}
                 </button>
               </div>
 
@@ -162,7 +170,7 @@ export default function LoginPage() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Email Input */}
                   <div>
-                    <label className="block text-gray-400 text-sm mb-2">Email Address</label>
+                    <label className="block text-gray-400 text-sm mb-2">{mounted && ready ? t('auth.emailAddress') : 'Email Address'}</label>
                     <div className="relative">
                       <input
                         type="email"
@@ -171,7 +179,7 @@ export default function LoginPage() {
                         className={`w-full px-4 py-3 pl-11 bg-slate-700/50 border ${
                           errors.email ? 'border-red-500' : 'border-slate-600'
                         } rounded-lg text-white placeholder-gray-500 focus:border-green-500 focus:outline-none transition-colors`}
-                        placeholder="Enter your email"
+                        placeholder={mounted && ready ? t('auth.enterEmail') : 'Enter your email'}
                       />
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                     </div>
@@ -185,7 +193,7 @@ export default function LoginPage() {
 
                   {/* Password Input */}
                   <div>
-                    <label className="block text-gray-400 text-sm mb-2">Password</label>
+                    <label className="block text-gray-400 text-sm mb-2">{mounted && ready ? t('auth.password') : 'Password'}</label>
                     <div className="relative">
                       <input
                         type={showPassword ? 'text' : 'password'}
@@ -194,7 +202,7 @@ export default function LoginPage() {
                         className={`w-full px-4 py-3 pl-11 pr-11 bg-slate-700/50 border ${
                           errors.password ? 'border-red-500' : 'border-slate-600'
                         } rounded-lg text-white placeholder-gray-500 focus:border-green-500 focus:outline-none transition-colors`}
-                        placeholder="Enter your password"
+                        placeholder={mounted && ready ? t('auth.enterPassword') : 'Enter your password'}
                       />
                       <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                       <button
@@ -222,10 +230,10 @@ export default function LoginPage() {
                         onChange={(e) => setRememberMe(e.target.checked)}
                         className="w-4 h-4 bg-slate-700 border-slate-600 rounded text-green-500 focus:ring-green-500"
                       />
-                      <span className="ml-2 text-gray-400 text-sm">Remember me</span>
+                      <span className="ml-2 text-gray-400 text-sm">{mounted && ready ? t('auth.rememberMe') : 'Remember me'}</span>
                     </label>
                     <Link href="/forgot-password" className="text-green-400 text-sm hover:text-green-300 transition-colors">
-                      Forgot password?
+                      {mounted && ready ? t('auth.forgotPassword') : 'Forgot password?'}
                     </Link>
                   </div>
 
@@ -247,7 +255,7 @@ export default function LoginPage() {
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                     ) : (
                       <>
-                        Sign In
+                        {mounted && ready ? t('nav.signin') : 'Sign In'}
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </>
                     )}

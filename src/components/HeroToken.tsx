@@ -23,17 +23,17 @@ const HeroToken = () => {
     setMounted(true)
   }, [])
   const tokenMetrics = [
-    { label: 'Total Supply', value: '1B', suffix: ' ENERGY' },
-    { label: 'Current Price', value: '$0.125', prefix: '' },
-    { label: 'Market Cap', value: '$125M', prefix: '' },
-    { label: 'Holders', value: '50,000+', suffix: '' }
+    { label: mounted && ready ? t('hero.totalSupply') : 'Total Supply', value: '1B', suffix: ' ENERGY' },
+    { label: mounted && ready ? t('hero.currentPrice') : 'Current Price', value: '$0.125', prefix: '' },
+    { label: mounted && ready ? t('hero.marketCap') : 'Market Cap', value: '$125M', prefix: '' },
+    { label: mounted && ready ? t('hero.holders') : 'Holders', value: '50,000+', suffix: '' }
   ]
 
   const features = [
-    'Powers all Soltolaria transactions',
-    'Stake for platform rewards',
-    'Governance voting rights',
-    'Fee discounts for traders'
+    mounted && ready ? t('hero.feature1') : 'Powers all Soltolaria transactions',
+    mounted && ready ? t('hero.feature2') : 'Stake for platform rewards',
+    mounted && ready ? t('hero.feature3') : 'Governance voting rights',
+    mounted && ready ? t('hero.feature4') : 'Fee discounts for traders'
   ]
 
   return (
@@ -122,8 +122,7 @@ const HeroToken = () => {
             transition={{ delay: 0.4 }}
             className="text-lg md:text-xl text-gray-300 text-center max-w-4xl mx-auto mb-12"
           >
-            ENERGY is the native utility token of Soltolaria&apos;s revolutionary decentralized energy marketplace.
-            Trade renewable energy, earn rewards, and participate in the future of sustainable power distribution.
+            {mounted && ready ? t('hero.description') : "ENERGY is the native utility token of Soltolaria's revolutionary decentralized energy marketplace. Trade renewable energy, earn rewards, and participate in the future of sustainable power distribution."}
           </motion.p>
 
           {/* Live Metrics */}
@@ -174,14 +173,14 @@ const HeroToken = () => {
             <Link href="https://soltolaria.com" target="_blank">
               <button className="group px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl font-semibold hover:from-green-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105 flex items-center shadow-xl hover:shadow-green-500/25">
                 <Globe className="h-5 w-5 mr-2" />
-                Visit Soltolaria Platform
+                {mounted && ready ? t('hero.visitPlatform') : 'Visit Soltolaria Platform'}
                 <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
             </Link>
             <Link href="/features">
               <button className="px-8 py-4 bg-slate-800/80 backdrop-blur-xl text-white rounded-xl font-semibold hover:bg-slate-700/80 transition-all duration-300 border border-slate-700 hover:border-green-500/50 flex items-center">
                 <Coins className="h-5 w-5 mr-2" />
-                Token Economics
+                {mounted && ready ? t('hero.tokenEconomics') : 'Token Economics'}
               </button>
             </Link>
           </motion.div>
@@ -196,15 +195,15 @@ const HeroToken = () => {
             <div className="inline-flex items-center space-x-8 text-gray-500 text-sm">
               <div className="flex items-center space-x-2">
                 <Shield className="h-4 w-4 text-green-400" />
-                <span>Audited Smart Contract</span>
+                <span>{mounted && ready ? t('hero.auditedContract') : 'Audited Smart Contract'}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Users className="h-4 w-4 text-green-400" />
-                <span>50,000+ Holders</span>
+                <span>{mounted && ready ? t('hero.holdersCount') : '50,000+ Holders'}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Activity className="h-4 w-4 text-green-400" />
-                <span>Live on Solana</span>
+                <span>{mounted && ready ? t('hero.liveOnSolana') : 'Live on Solana'}</span>
               </div>
             </div>
           </motion.div>
@@ -220,19 +219,19 @@ const HeroToken = () => {
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                  <span className="text-gray-400 text-sm">Network Status</span>
+                  <span className="text-gray-400 text-sm">{mounted && ready ? t('hero.networkStatus') : 'Network Status'}</span>
                 </div>
                 <div className="flex items-center space-x-6 text-sm">
                   <div>
-                    <span className="text-gray-400">24h Volume:</span>
+                    <span className="text-gray-400">{mounted && ready ? t('hero.volume24h') : '24h Volume:'}</span>
                     <span className="text-green-400 ml-2 font-semibold">$2.4M</span>
                   </div>
                   <div>
-                    <span className="text-gray-400">24h Change:</span>
+                    <span className="text-gray-400">{mounted && ready ? t('hero.change24h') : '24h Change:'}</span>
                     <span className="text-green-400 ml-2 font-semibold">+12.5%</span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Gas Fee:</span>
+                    <span className="text-gray-400">{mounted && ready ? t('hero.gasFee') : 'Gas Fee:'}</span>
                     <span className="text-white ml-2 font-semibold">0.001 SOL</span>
                   </div>
                 </div>

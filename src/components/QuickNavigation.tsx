@@ -1,8 +1,9 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useTranslation } from 'react-i18next'
 import {
   Cpu,
   Network,
@@ -20,31 +21,37 @@ import {
 } from 'lucide-react'
 
 const QuickNavigation = () => {
+  const { t, ready } = useTranslation()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
   const mainLinks = [
     {
-      title: 'Technology',
-      description: 'Blockchain architecture',
+      title: mounted && ready ? t('nav.technology') : 'Technology',
+      description: mounted && ready ? t('quicknav.techDesc') : 'Blockchain architecture',
       href: '/technology',
       icon: Cpu,
       gradient: 'from-blue-500 to-cyan-600'
     },
     {
-      title: 'Ecosystem',
-      description: 'Network participants',
+      title: mounted && ready ? t('nav.ecosystem') : 'Ecosystem',
+      description: mounted && ready ? t('quicknav.ecoDesc') : 'Network participants',
       href: '/ecosystem',
       icon: Network,
       gradient: 'from-green-500 to-emerald-600'
     },
     {
-      title: 'Roadmap',
-      description: 'Development timeline',
+      title: mounted && ready ? t('nav.roadmap') : 'Roadmap',
+      description: mounted && ready ? t('quicknav.roadmapDesc') : 'Development timeline',
       href: '/roadmap',
       icon: Map,
       gradient: 'from-purple-500 to-pink-600'
     },
     {
-      title: 'Team',
-      description: 'Meet our experts',
+      title: mounted && ready ? t('nav.team') : 'Team',
+      description: mounted && ready ? t('quicknav.teamDesc') : 'Meet our experts',
       href: '/team',
       icon: Users,
       gradient: 'from-orange-500 to-red-600'
@@ -53,36 +60,36 @@ const QuickNavigation = () => {
 
   const platformLinks = [
     {
-      title: 'Live Stats',
-      description: 'Real-time metrics',
+      title: mounted && ready ? t('quicknav.liveStats') : 'Live Stats',
+      description: mounted && ready ? t('quicknav.liveStatsDesc') : 'Real-time metrics',
       href: '/live-stats',
       icon: BarChart3,
       gradient: 'from-cyan-500 to-blue-600'
     },
     {
-      title: 'Energy Trading',
-      description: 'Trade renewable energy',
+      title: mounted && ready ? t('quicknav.energyTrading') : 'Energy Trading',
+      description: mounted && ready ? t('quicknav.energyTradingDesc') : 'Trade renewable energy',
       href: '/energy-trading',
       icon: Zap,
       gradient: 'from-yellow-500 to-orange-600'
     },
     {
-      title: 'Carbon Credits',
-      description: 'Offset emissions',
+      title: mounted && ready ? t('quicknav.carbonCredits') : 'Carbon Credits',
+      description: mounted && ready ? t('quicknav.carbonCreditsDesc') : 'Offset emissions',
       href: '/carbon-marketplace',
       icon: Leaf,
       gradient: 'from-green-500 to-teal-600'
     },
     {
-      title: 'Features',
-      description: 'Platform capabilities',
+      title: mounted && ready ? t('quicknav.features') : 'Features',
+      description: mounted && ready ? t('quicknav.featuresDesc') : 'Platform capabilities',
       href: '/features',
       icon: Shield,
       gradient: 'from-indigo-500 to-purple-600'
     },
     {
-      title: 'Dashboard',
-      description: 'Manage portfolio',
+      title: mounted && ready ? t('nav.dashboard') : 'Dashboard',
+      description: mounted && ready ? t('quicknav.dashboardDesc') : 'Manage portfolio',
       href: '/dashboard',
       icon: LayoutDashboard,
       gradient: 'from-pink-500 to-rose-600'
@@ -91,15 +98,15 @@ const QuickNavigation = () => {
 
   const resourceLinks = [
     {
-      title: 'Documentation',
-      description: 'Developer guides',
+      title: mounted && ready ? t('nav.documentation') : 'Documentation',
+      description: mounted && ready ? t('quicknav.docsDesc') : 'Developer guides',
       href: '/docs',
       icon: FileText,
       gradient: 'from-slate-500 to-slate-700'
     },
     {
-      title: 'Blog',
-      description: 'Latest updates',
+      title: mounted && ready ? t('quicknav.blog') : 'Blog',
+      description: mounted && ready ? t('quicknav.blogDesc') : 'Latest updates',
       href: '/blog',
       icon: Newspaper,
       gradient: 'from-emerald-500 to-green-700'
@@ -120,7 +127,7 @@ const QuickNavigation = () => {
           className="mb-16"
         >
           <h2 className="text-3xl font-bold text-white text-center mb-8">
-            Explore ENERGY Blockchain
+            {mounted && ready ? t('quicknav.title') : 'Explore ENERGY Blockchain'}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

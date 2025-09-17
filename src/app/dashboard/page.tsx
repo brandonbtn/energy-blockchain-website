@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useTranslation } from 'react-i18next'
+import '../lib/i18n-client'
 import {
   LayoutDashboard,
   TrendingUp,
@@ -37,7 +39,13 @@ import {
 
 const DashboardPage = () => {
   const router = useRouter()
+  const { t, ready } = useTranslation()
+  const [mounted, setMounted] = useState(false)
   const [activeTab, setActiveTab] = useState('overview')
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
   const [timeframe, setTimeframe] = useState('24h')
   const [portfolioValue, setPortfolioValue] = useState(125430.50)
   const [energyBalance, setEnergyBalance] = useState(15234.67)
@@ -73,16 +81,16 @@ const DashboardPage = () => {
   }, [])
 
   const tabs = [
-    { id: 'overview', label: 'Overview', icon: LayoutDashboard },
-    { id: 'portfolio', label: 'Portfolio', icon: Wallet },
-    { id: 'trading', label: 'Trading', icon: Activity },
-    { id: 'staking', label: 'Staking', icon: Shield },
-    { id: 'analytics', label: 'Analytics', icon: BarChart3 }
+    { id: 'overview', label: mounted && ready ? t('dashboard.overview') : 'Overview', icon: LayoutDashboard },
+    { id: 'portfolio', label: mounted && ready ? t('dashboard.portfolio') : 'Portfolio', icon: Wallet },
+    { id: 'trading', label: mounted && ready ? t('dashboard.trading') : 'Trading', icon: Activity },
+    { id: 'staking', label: mounted && ready ? t('dashboard.staking') : 'Staking', icon: Shield },
+    { id: 'analytics', label: mounted && ready ? t('dashboard.analytics') : 'Analytics', icon: BarChart3 }
   ]
 
   const portfolioStats = [
     {
-      label: 'Total Value',
+      label: mounted && ready ? t('dashboard.totalValue') : 'Total Value',
       value: `$${portfolioValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
       change: '+12.5%',
       trend: 'up',
@@ -90,7 +98,7 @@ const DashboardPage = () => {
       color: 'green'
     },
     {
-      label: 'ENERGY Balance',
+      label: mounted && ready ? t('dashboard.energyBalance') : 'ENERGY Balance',
       value: energyBalance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
       change: '+5.3%',
       trend: 'up',
@@ -98,7 +106,7 @@ const DashboardPage = () => {
       color: 'blue'
     },
     {
-      label: 'Staking Rewards',
+      label: mounted && ready ? t('dashboard.stakingRewards') : 'Staking Rewards',
       value: '$2,340.12',
       change: '+23.1%',
       trend: 'up',
@@ -106,7 +114,7 @@ const DashboardPage = () => {
       color: 'purple'
     },
     {
-      label: 'Carbon Credits',
+      label: mounted && ready ? t('dashboard.carbonCredits') : 'Carbon Credits',
       value: '450 tons',
       change: '+15 tons',
       trend: 'up',
@@ -117,7 +125,7 @@ const DashboardPage = () => {
 
   const energyAssets = [
     {
-      type: 'Solar Energy',
+      type: mounted && ready ? t('dashboard.solarEnergy') : 'Solar Energy',
       icon: Sun,
       amount: '5,234 kWh',
       value: '$428.59',
@@ -126,7 +134,7 @@ const DashboardPage = () => {
       color: 'yellow'
     },
     {
-      type: 'Wind Energy',
+      type: mounted && ready ? t('dashboard.windEnergy') : 'Wind Energy',
       icon: Wind,
       amount: '3,120 kWh',
       value: '$255.84',
@@ -135,7 +143,7 @@ const DashboardPage = () => {
       color: 'cyan'
     },
     {
-      type: 'Hydro Energy',
+      type: mounted && ready ? t('dashboard.hydroEnergy') : 'Hydro Energy',
       icon: Droplet,
       amount: '1,850 kWh',
       value: '$151.70',
@@ -144,7 +152,7 @@ const DashboardPage = () => {
       color: 'blue'
     },
     {
-      type: 'Natural Gas',
+      type: mounted && ready ? t('dashboard.naturalGas') : 'Natural Gas',
       icon: Flame,
       amount: '890 kWh',
       value: '$72.98',

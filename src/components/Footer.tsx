@@ -1,37 +1,44 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Zap, Github, Twitter, Linkedin, Mail, MapPin } from 'lucide-react'
 import Link from 'next/link'
+import { useTranslation } from 'react-i18next'
 
 const Footer = () => {
+  const { t, ready } = useTranslation()
+  const [mounted, setMounted] = useState(false)
   const currentYear = new Date().getFullYear()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const footerLinks = {
     product: [
-      { name: 'Energy DEX', href: '/dex' },
-      { name: 'Carbon Marketplace', href: '/carbon' },
-      { name: 'Validator Network', href: '/validators' },
-      { name: 'API Documentation', href: '/docs' },
+      { name: mounted && ready ? t('footer.energyDex') : 'Energy DEX', href: '/dex' },
+      { name: mounted && ready ? t('footer.carbonMarketplace') : 'Carbon Marketplace', href: '/carbon' },
+      { name: mounted && ready ? t('footer.validatorNetwork') : 'Validator Network', href: '/validators' },
+      { name: mounted && ready ? t('footer.apiDocs') : 'API Documentation', href: '/docs' },
     ],
     company: [
-      { name: 'About Us', href: '/about' },
-      { name: 'Team', href: '/team' },
-      { name: 'Careers', href: '/careers' },
-      { name: 'Press Kit', href: '/press' },
+      { name: mounted && ready ? t('footer.aboutUs') : 'About Us', href: '/about' },
+      { name: mounted && ready ? t('nav.team') : 'Team', href: '/team' },
+      { name: mounted && ready ? t('footer.careers') : 'Careers', href: '/careers' },
+      { name: mounted && ready ? t('footer.pressKit') : 'Press Kit', href: '/press' },
     ],
     resources: [
-      { name: 'Whitepaper', href: '/whitepaper' },
-      { name: 'Technical Docs', href: '/docs' },
-      { name: 'Developer Guide', href: '/developers' },
-      { name: 'Community', href: '/community' },
+      { name: mounted && ready ? t('footer.whitepaper') : 'Whitepaper', href: '/whitepaper' },
+      { name: mounted && ready ? t('footer.technicalDocs') : 'Technical Docs', href: '/docs' },
+      { name: mounted && ready ? t('footer.developerGuide') : 'Developer Guide', href: '/developers' },
+      { name: mounted && ready ? t('footer.community') : 'Community', href: '/community' },
     ],
     legal: [
-      { name: 'Privacy Policy', href: '/privacy' },
-      { name: 'Terms of Service', href: '/terms' },
-      { name: 'Cookie Policy', href: '/cookies' },
-      { name: 'Compliance', href: '/compliance' },
+      { name: mounted && ready ? t('footer.privacyPolicy') : 'Privacy Policy', href: '/privacy' },
+      { name: mounted && ready ? t('footer.termsOfService') : 'Terms of Service', href: '/terms' },
+      { name: mounted && ready ? t('footer.cookiePolicy') : 'Cookie Policy', href: '/cookies' },
+      { name: mounted && ready ? t('footer.compliance') : 'Compliance', href: '/compliance' },
     ]
   }
 
@@ -66,14 +73,12 @@ const Footer = () => {
             </Link>
 
             <p className="text-gray-400 mb-6 leading-relaxed">
-              The world's first renewable energy blockchain with 65,000+ TPS,
-              carbon credits, and sustainable DeFi protocols. Building the future
-              of clean energy trading.
+              {mounted && ready ? t('footer.description') : "The world's first renewable energy blockchain with 65,000+ TPS, carbon credits, and sustainable DeFi protocols. Building the future of clean energy trading."}
             </p>
 
             <div className="flex items-center space-x-2 text-gray-400 mb-4">
               <MapPin className="h-4 w-4" />
-              <span className="text-sm">Global Network • Decentralized</span>
+              <span className="text-sm">{mounted && ready ? t('footer.globalNetwork') : 'Global Network • Decentralized'}</span>
             </div>
 
             {/* Social Links */}
