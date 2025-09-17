@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 // Import minimal components for clean homepage
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import HeroSimple from '@/components/HeroSimple'
+import HeroToken from '@/components/HeroToken'
 import QuickNavigation from '@/components/QuickNavigation'
 
 export default function HomePage() {
@@ -22,8 +22,8 @@ export default function HomePage() {
 
       {/* Main Content */}
       <main className="relative">
-        {/* Simple Hero Section */}
-        <HeroSimple />
+        {/* Token Hero Section */}
+        <HeroToken />
 
         {/* Quick Navigation to All Pages */}
         <QuickNavigation />

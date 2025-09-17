@@ -40,7 +40,7 @@ const HeroSimple = () => {
             transition={{ delay: 0.3 }}
             className="text-5xl md:text-7xl font-bold mb-6 text-white"
           >
-            ENERGY Blockchain
+            ENERGY Token
           </motion.h1>
 
           {/* Subtitle */}
@@ -50,7 +50,7 @@ const HeroSimple = () => {
             transition={{ delay: 0.4 }}
             className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto"
           >
-            The Future of Renewable Energy Trading
+            The Native Currency Powering Soltolaria's Decentralized Energy Marketplace
           </motion.p>
 
           {/* Key Stats - Simple */}

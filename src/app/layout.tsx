@@ -2,19 +2,19 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'ENERGY Blockchain - Renewable Energy Trading Platform',
-  description: 'The world\'s first renewable energy blockchain with 65,000+ TPS, carbon credits, and sustainable DeFi protocols. Join the future of clean energy trading.',
+  title: 'ENERGY Token - Powering Soltolaria\'s Decentralized Energy Marketplace',
+  description: 'ENERGY is the native utility token of Soltolaria. Trade renewable energy, earn rewards, and participate in the future of sustainable power distribution on blockchain.',
   keywords: [
-    'blockchain',
-    'renewable energy',
-    'carbon credits',
-    'DeFi',
-    'sustainability',
-    'clean energy',
-    'proof of energy',
-    'energy trading',
-    'climate change',
-    'green finance'
+    'ENERGY token',
+    'Soltolaria',
+    'renewable energy token',
+    'energy trading cryptocurrency',
+    'Solana token',
+    'DeFi energy',
+    'utility token',
+    'decentralized energy',
+    'green cryptocurrency',
+    'sustainable blockchain'
   ],
   authors: [{ name: 'ENERGY Blockchain Team' }],
   creator: 'ENERGY Blockchain',
@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'ENERGY Blockchain - Renewable Energy Trading Platform',
-    description: 'The world\'s first renewable energy blockchain with 65,000+ TPS, carbon credits, and sustainable DeFi protocols.',
-    url: 'https://energyblockchain.org',
-    siteName: 'ENERGY Blockchain',
+    title: 'ENERGY Token - Soltolaria\'s Native Currency',
+    description: 'The utility token powering Soltolaria\'s decentralized energy marketplace. Trade, stake, and govern the future of renewable energy.',
+    url: 'https://energytoken.io',
+    siteName: 'ENERGY Token',
     images: [
       {
         url: '/og-image.png',

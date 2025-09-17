@@ -4,7 +4,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import Ecosystem from '@/components/Ecosystem'
+import TokenEcosystem from '@/components/TokenEcosystem'
 import { ArrowLeft, Users, Building2, Coins, Globe } from 'lucide-react'
 import Link from 'next/link'
 
@@ -36,21 +36,21 @@ export default function EcosystemPage() {
             ENERGY <span className="text-gradient">Ecosystem</span>
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            A comprehensive network of stakeholders driving the renewable energy revolution
+            Discover how ENERGY tokens power the Soltolaria platform and connect energy markets globally
           </p>
         </motion.div>
 
-        {/* Ecosystem Component */}
-        <Ecosystem />
+        {/* Token Ecosystem Component */}
+        <TokenEcosystem />
 
-        {/* Ecosystem Stats */}
+        {/* Token Stats */}
         <section className="container mx-auto px-6 py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             {[
-              { icon: Users, label: 'Active Users', value: '50,000+', growth: '+125%' },
-              { icon: Building2, label: 'Energy Producers', value: '1,200+', growth: '+85%' },
-              { icon: Coins, label: 'Total Value Locked', value: '$125M', growth: '+45%' },
-              { icon: Globe, label: 'Countries', value: '45', growth: '+12' }
+              { icon: Users, label: 'Token Holders', value: '50,000+', growth: '+125%' },
+              { icon: Building2, label: 'Partner Platforms', value: '25+', growth: '+85%' },
+              { icon: Coins, label: 'Market Cap', value: '$125M', growth: '+45%' },
+              { icon: Globe, label: 'Available Markets', value: '45', growth: '+12' }
             ].map((stat, index) => {
               const Icon = stat.icon
               return (
@@ -73,7 +73,7 @@ export default function EcosystemPage() {
             })}
           </div>
 
-          {/* Ecosystem Participants */}
+          {/* Token Ecosystem Participants */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -82,26 +82,26 @@ export default function EcosystemPage() {
               viewport={{ once: true }}
               className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8"
             >
-              <h3 className="text-2xl font-bold text-white mb-4">Energy Producers</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">Token Holders</h3>
               <p className="text-gray-400 mb-6">
-                Renewable energy facilities that generate and sell clean energy through our platform
+                ENERGY token holders participating in governance and earning rewards
               </p>
               <ul className="space-y-3">
                 <li className="flex items-center text-gray-300">
                   <span className="w-2 h-2 bg-green-400 rounded-full mr-3"></span>
-                  Solar Farms
+                  Individual Investors
                 </li>
                 <li className="flex items-center text-gray-300">
                   <span className="w-2 h-2 bg-green-400 rounded-full mr-3"></span>
-                  Wind Turbines
+                  Institutional Funds
                 </li>
                 <li className="flex items-center text-gray-300">
                   <span className="w-2 h-2 bg-green-400 rounded-full mr-3"></span>
-                  Hydroelectric Plants
+                  DeFi Protocols
                 </li>
                 <li className="flex items-center text-gray-300">
                   <span className="w-2 h-2 bg-green-400 rounded-full mr-3"></span>
-                  Geothermal Facilities
+                  Energy Traders
                 </li>
               </ul>
             </motion.div>
@@ -113,26 +113,26 @@ export default function EcosystemPage() {
               viewport={{ once: true }}
               className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8"
             >
-              <h3 className="text-2xl font-bold text-white mb-4">Energy Consumers</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">Platform Users</h3>
               <p className="text-gray-400 mb-6">
-                Businesses and individuals purchasing clean energy directly from producers
+                Soltolaria platform users leveraging ENERGY tokens for transactions
               </p>
               <ul className="space-y-3">
                 <li className="flex items-center text-gray-300">
                   <span className="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
-                  Industrial Facilities
+                  Energy Producers
                 </li>
                 <li className="flex items-center text-gray-300">
                   <span className="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
-                  Commercial Buildings
+                  Energy Consumers
                 </li>
                 <li className="flex items-center text-gray-300">
                   <span className="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
-                  Residential Homes
+                  Carbon Credit Traders
                 </li>
                 <li className="flex items-center text-gray-300">
                   <span className="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
-                  Electric Vehicle Fleets
+                  Grid Operators
                 </li>
               </ul>
             </motion.div>
@@ -144,26 +144,26 @@ export default function EcosystemPage() {
               viewport={{ once: true }}
               className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8"
             >
-              <h3 className="text-2xl font-bold text-white mb-4">Service Providers</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">Ecosystem Partners</h3>
               <p className="text-gray-400 mb-6">
-                Essential services supporting the energy trading ecosystem
+                Strategic partners integrating ENERGY tokens into their services
               </p>
               <ul className="space-y-3">
                 <li className="flex items-center text-gray-300">
                   <span className="w-2 h-2 bg-purple-400 rounded-full mr-3"></span>
-                  Grid Operators
+                  DEX Platforms
                 </li>
                 <li className="flex items-center text-gray-300">
                   <span className="w-2 h-2 bg-purple-400 rounded-full mr-3"></span>
-                  Energy Auditors
+                  Wallet Providers
                 </li>
                 <li className="flex items-center text-gray-300">
                   <span className="w-2 h-2 bg-purple-400 rounded-full mr-3"></span>
-                  Carbon Verifiers
+                  Oracle Networks
                 </li>
                 <li className="flex items-center text-gray-300">
                   <span className="w-2 h-2 bg-purple-400 rounded-full mr-3"></span>
-                  DeFi Protocols
+                  Lending Protocols
                 </li>
               </ul>
             </motion.div>

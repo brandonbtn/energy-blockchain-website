@@ -4,10 +4,8 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import Features from '@/components/Features'
-import Metrics from '@/components/Metrics'
-import SecurityFeatures from '@/components/SecurityFeatures'
-import CompetitiveAdvantage from '@/components/CompetitiveAdvantage'
+import TokenUtilities from '@/components/TokenUtilities'
+import TokenBenefits from '@/components/TokenBenefits'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 
@@ -36,24 +34,18 @@ export default function FeaturesPage() {
           className="container mx-auto px-6 pb-12 text-center"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Platform <span className="text-gradient">Features</span>
+            Token <span className="text-gradient">Features</span>
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Discover the powerful features that make ENERGY the most advanced renewable energy blockchain
+            Discover how ENERGY powers the Soltolaria ecosystem with exclusive utilities and benefits
           </p>
         </motion.div>
 
-        {/* Core Features */}
-        <Features />
+        {/* Token Utilities */}
+        <TokenUtilities />
 
-        {/* Live Metrics */}
-        <Metrics />
-
-        {/* Security Features */}
-        <SecurityFeatures />
-
-        {/* Competitive Advantages */}
-        <CompetitiveAdvantage />
+        {/* Token Benefits */}
+        <TokenBenefits />
       </main>
 
       <Footer />
