@@ -3,24 +3,19 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-// Import all components
+// Import only essential components for homepage
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import HeroEnhanced from '@/components/HeroEnhanced'
 import LiveStats from '@/components/LiveStats'
 import Features from '@/components/Features'
 import Metrics from '@/components/Metrics'
-import Ecosystem from '@/components/Ecosystem'
-import Technology from '@/components/Technology'
-import Roadmap from '@/components/Roadmap'
-import Team from '@/components/Team'
 import Partners from '@/components/Partners'
 import Newsletter from '@/components/Newsletter'
 import EnergyTrading from '@/components/EnergyTrading'
 import CarbonMarketplace from '@/components/CarbonMarketplace'
-import SecurityFeatures from '@/components/SecurityFeatures'
-import CompetitiveAdvantage from '@/components/CompetitiveAdvantage'
 import BlogSection from '@/components/BlogSection'
+import ExploreSection from '@/components/ExploreSection'
 
 export default function HomePage() {
   return (
@@ -53,23 +48,8 @@ export default function HomePage() {
         {/* Core Features Grid */}
         <Features />
 
-        {/* Technology Deep Dive */}
-        <Technology />
-
-        {/* Competitive Advantages */}
-        <CompetitiveAdvantage />
-
-        {/* Security & Compliance */}
-        <SecurityFeatures />
-
-        {/* Ecosystem Overview */}
-        <Ecosystem />
-
-        {/* Development Roadmap */}
-        <Roadmap />
-
-        {/* Team Section */}
-        <Team />
+        {/* Explore Our Ecosystem - Links to other pages */}
+        <ExploreSection />
 
         {/* Strategic Partners */}
         <Partners />
