@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import {
   LayoutDashboard,
   TrendingUp,
@@ -35,10 +36,31 @@ import {
 } from 'lucide-react'
 
 const DashboardPage = () => {
+  const router = useRouter()
   const [activeTab, setActiveTab] = useState('overview')
   const [timeframe, setTimeframe] = useState('24h')
   const [portfolioValue, setPortfolioValue] = useState(125430.50)
   const [energyBalance, setEnergyBalance] = useState(15234.67)
+  const [userName, setUserName] = useState('User')
+
+  // Check authentication
+  useEffect(() => {
+    const isAuth = localStorage.getItem('isAuthenticated')
+    if (!isAuth) {
+      router.push('/login')
+    }
+    const name = localStorage.getItem('userName')
+    if (name) {
+      setUserName(name)
+    }
+  }, [])
+
+  const handleLogout = () => {
+    localStorage.removeItem('isAuthenticated')
+    localStorage.removeItem('userEmail')
+    localStorage.removeItem('userName')
+    router.push('/')
+  }
 
   // Simulate real-time data updates
   useEffect(() => {
@@ -256,15 +278,17 @@ const DashboardPage = () => {
               <button className="p-2 text-gray-400 hover:text-white transition-colors">
                 <Bell className="h-5 w-5" />
               </button>
-              <button className="p-2 text-gray-400 hover:text-white transition-colors">
+              <Link href="/dashboard/settings" className="p-2 text-gray-400 hover:text-white transition-colors">
                 <Settings className="h-5 w-5" />
-              </button>
+              </Link>
               <div className="flex items-center space-x-3 px-3 py-2 bg-slate-800 rounded-lg">
                 <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
                   <User className="h-4 w-4 text-white" />
                 </div>
-                <span className="text-white font-medium">0x7f9e...3a2b</span>
-                <LogOut className="h-4 w-4 text-gray-400 cursor-pointer hover:text-white" />
+                <span className="text-white font-medium">{userName.split(' ')[0]}</span>
+                <button onClick={handleLogout}>
+                  <LogOut className="h-4 w-4 text-gray-400 cursor-pointer hover:text-white" />
+                </button>
               </div>
             </div>
           </div>

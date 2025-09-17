@@ -11,6 +11,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isWalletModalOpen, setIsWalletModalOpen] = useState(false)
   const [connectedWallet, setConnectedWallet] = useState<string | null>(null)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +20,11 @@ const Header = () => {
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const auth = localStorage.getItem('isAuthenticated')
+    setIsAuthenticated(auth === 'true')
   }, [])
 
   const navigationItems = [
@@ -72,19 +78,29 @@ const Header = () => {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link
-              href="/dashboard"
-              className="px-6 py-2 text-gray-300 hover:text-white transition-colors"
-            >
-              Launch App
-            </Link>
-            <button
-              onClick={() => setIsWalletModalOpen(true)}
-              className="px-6 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full hover:from-green-400 hover:to-emerald-500 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-green-500/25 flex items-center space-x-2"
-            >
-              <Wallet className="h-4 w-4" />
-              <span>{connectedWallet ? 'Connected' : 'Connect Wallet'}</span>
-            </button>
+            {isAuthenticated ? (
+              <Link
+                href="/dashboard"
+                className="px-6 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full font-semibold hover:from-green-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105"
+              >
+                Dashboard
+              </Link>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="px-6 py-2 text-white hover:text-green-400 transition-colors font-semibold"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/signup"
+                  className="px-6 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full font-semibold hover:from-green-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105"
+                >
+                  Get Started
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
