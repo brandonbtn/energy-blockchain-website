@@ -22,11 +22,12 @@ const Header = () => {
   }, [])
 
   const navigationItems = [
-    { name: 'Technology', href: '#technology' },
-    { name: 'Ecosystem', href: '#ecosystem' },
-    { name: 'Roadmap', href: '#roadmap' },
-    { name: 'Team', href: '#team' },
+    { name: 'Technology', href: '/technology' },
+    { name: 'Ecosystem', href: '/ecosystem' },
+    { name: 'Roadmap', href: '/roadmap' },
+    { name: 'Team', href: '/team' },
     { name: 'Documentation', href: '/docs' },
+    { name: 'Dashboard', href: '/dashboard' },
   ]
 
   return (
