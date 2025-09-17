@@ -13,32 +13,11 @@ const Team = () => {
 
   const teamMembers = [
     {
-      name: 'Dr. Sarah Chen',
-      role: 'CEO & Co-Founder',
-      bio: 'Former Tesla energy engineer with 15+ years in renewable energy systems',
-      image: '/team/sarah-chen.jpg',
-      social: { linkedin: '#', twitter: '#' }
-    },
-    {
-      name: 'Marcus Rodriguez',
-      role: 'CTO & Co-Founder',
-      bio: 'Ex-Ethereum core developer, blockchain architect with 10+ years experience',
-      image: '/team/marcus-rodriguez.jpg',
-      social: { linkedin: '#', github: '#' }
-    },
-    {
-      name: 'Dr. Yuki Tanaka',
-      role: 'Head of Research',
-      bio: 'Former MIT researcher specializing in consensus mechanisms and cryptography',
-      image: '/team/yuki-tanaka.jpg',
-      social: { linkedin: '#', twitter: '#' }
-    },
-    {
-      name: 'Elena Kowalski',
-      role: 'VP of Business Development',
-      bio: 'Energy industry veteran with partnerships across 50+ countries',
-      image: '/team/elena-kowalski.jpg',
-      social: { linkedin: '#', twitter: '#' }
+      name: 'Brandon Wilkinson',
+      role: 'Founder & CEO',
+      bio: 'Visionary entrepreneur passionate about renewable energy and blockchain technology. Building the future of decentralized energy trading.',
+      image: '/team/brandon-wilkinson.jpg',
+      social: { linkedin: '#', twitter: '#', github: '#' }
     }
   ]
 
@@ -55,32 +34,32 @@ const Team = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Meet Our <span className="text-gradient">Team</span>
+            Meet the <span className="text-gradient">Founder</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            World-class experts in blockchain technology, renewable energy, and sustainable finance.
+            Leading the mission to revolutionize renewable energy trading through blockchain technology.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="flex justify-center">
           {teamMembers.map((member, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group"
+              className="group max-w-md"
             >
-              <div className="bg-slate-800/50 rounded-2xl p-6 text-center hover:bg-slate-800/70 transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-24 h-24 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">
+              <div className="bg-slate-800/50 rounded-2xl p-8 text-center hover:bg-slate-800/70 transition-all duration-300 transform hover:-translate-y-2 border border-slate-700/50 hover:border-green-500/30">
+                <div className="w-32 h-32 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full mx-auto mb-6 flex items-center justify-center shadow-xl">
+                  <span className="text-white font-bold text-3xl">
                     {member.name.split(' ').map(n => n[0]).join('')}
                   </span>
                 </div>
 
-                <h3 className="text-lg font-bold text-white mb-1">{member.name}</h3>
-                <p className="text-green-400 text-sm font-medium mb-3">{member.role}</p>
-                <p className="text-gray-400 text-sm mb-4">{member.bio}</p>
+                <h3 className="text-2xl font-bold text-white mb-2">{member.name}</h3>
+                <p className="text-green-400 text-lg font-medium mb-4">{member.role}</p>
+                <p className="text-gray-400 text-base mb-6 leading-relaxed">{member.bio}</p>
 
                 <div className="flex justify-center space-x-3">
                   {member.social.linkedin && (
