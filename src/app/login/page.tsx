@@ -292,9 +292,9 @@ export default function LoginPage() {
               {/* Sign Up Link */}
               <div className="mt-8 text-center">
                 <p className="text-gray-400">
-                  Don't have an account?{' '}
+                  {mounted && ready ? t('auth.noAccount') : "Don't have an account?"}{' '}
                   <Link href="/signup" className="text-green-400 font-semibold hover:text-green-300 transition-colors">
-                    Sign up
+                    {mounted && ready ? t('auth.signUp') : 'Sign up'}
                   </Link>
                 </p>
               </div>

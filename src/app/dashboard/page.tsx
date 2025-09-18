@@ -351,7 +351,7 @@ const DashboardPage = () => {
               {/* Chart Placeholder */}
               <div className="lg:col-span-2 bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6">
                 <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-lg font-bold text-white">Portfolio Performance</h3>
+                  <h3 className="text-lg font-bold text-white">{mounted && ready ? t('dashboard.performance') : 'Portfolio Performance'}</h3>
                   <div className="flex items-center space-x-2">
                     {['24h', '7d', '30d', '1y'].map((period) => (
                       <button
@@ -393,7 +393,7 @@ const DashboardPage = () => {
               {/* Energy Assets */}
               <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6">
                 <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-lg font-bold text-white">Energy Assets</h3>
+                  <h3 className="text-lg font-bold text-white">{mounted && ready ? t('dashboard.energyAssets') : 'Energy Assets'}</h3>
                   <button className="text-green-400 hover:text-green-300">
                     <Plus className="h-5 w-5" />
                   </button>
@@ -430,7 +430,7 @@ const DashboardPage = () => {
                 </div>
 
                 <button className="w-full mt-4 px-4 py-2 bg-green-500/10 hover:bg-green-500/20 border border-green-500/30 rounded-lg text-green-400 font-medium transition-all duration-200">
-                  View All Assets
+                  {mounted && ready ? t('dashboard.viewAllAssets') : 'View All Assets'}
                 </button>
               </div>
             </div>
@@ -438,10 +438,10 @@ const DashboardPage = () => {
             {/* Recent Transactions */}
             <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-bold text-white">Recent Transactions</h3>
+                <h3 className="text-lg font-bold text-white">{mounted && ready ? t('dashboard.recentTransactions') : 'Recent Transactions'}</h3>
                 <button className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors">
                   <RefreshCw className="h-4 w-4" />
-                  <span className="text-sm">Refresh</span>
+                  <span className="text-sm">{mounted && ready ? t('dashboard.refreshData') : 'Refresh'}</span>
                 </button>
               </div>
 
@@ -449,13 +449,13 @@ const DashboardPage = () => {
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-slate-700">
-                      <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">Type</th>
-                      <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">Asset</th>
-                      <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">Amount</th>
-                      <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">Price</th>
-                      <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">Total</th>
-                      <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">Time</th>
-                      <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">Status</th>
+                      <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">{mounted && ready ? t('dashboard.type') : 'Type'}</th>
+                      <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">{mounted && ready ? t('dashboard.asset') : 'Asset'}</th>
+                      <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">{mounted && ready ? t('dashboard.amount') : 'Amount'}</th>
+                      <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">{mounted && ready ? t('dashboard.price') : 'Price'}</th>
+                      <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">{mounted && ready ? t('dashboard.total') : 'Total'}</th>
+                      <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">{mounted && ready ? t('dashboard.time') : 'Time'}</th>
+                      <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">{mounted && ready ? t('dashboard.status') : 'Status'}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -489,11 +489,11 @@ const DashboardPage = () => {
 
               <div className="flex items-center justify-between mt-4">
                 <button className="text-gray-400 hover:text-white transition-colors text-sm">
-                  View All Transactions
+                  {mounted && ready ? t('dashboard.viewAllTransactions') : 'View All Transactions'}
                 </button>
                 <button className="flex items-center space-x-2 text-green-400 hover:text-green-300 transition-colors text-sm">
                   <Download className="h-4 w-4" />
-                  <span>Export CSV</span>
+                  <span>{mounted && ready ? t('dashboard.exportCsv') : 'Export CSV'}</span>
                 </button>
               </div>
             </div>
@@ -503,7 +503,7 @@ const DashboardPage = () => {
         {activeTab === 'staking' && (
           <div className="space-y-8">
             <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6">
-              <h3 className="text-2xl font-bold text-white mb-6">Staking Pools</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">{mounted && ready ? t('dashboard.stakingPools') : 'Staking Pools'}</h3>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {stakingPools.map((pool, index) => (
@@ -518,33 +518,33 @@ const DashboardPage = () => {
 
                     <div className="space-y-3 mb-6">
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-400 text-sm">APY</span>
+                        <span className="text-gray-400 text-sm">{mounted && ready ? t('dashboard.apy') : 'APY'}</span>
                         <span className="text-green-400 font-bold text-lg">{pool.apy}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-400 text-sm">TVL</span>
+                        <span className="text-gray-400 text-sm">{mounted && ready ? t('dashboard.tvl') : 'TVL'}</span>
                         <span className="text-white font-medium">{pool.tvl}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-400 text-sm">Your Stake</span>
+                        <span className="text-gray-400 text-sm">{mounted && ready ? t('dashboard.yourStake') : 'Your Stake'}</span>
                         <span className="text-white">{pool.userStake}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-400 text-sm">Rewards</span>
+                        <span className="text-gray-400 text-sm">{mounted && ready ? t('dashboard.rewards') : 'Rewards'}</span>
                         <span className="text-green-400">{pool.rewards}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-400 text-sm">Lock Period</span>
+                        <span className="text-gray-400 text-sm">{mounted && ready ? t('dashboard.lockPeriod') : 'Lock Period'}</span>
                         <span className="text-gray-300">{pool.lockPeriod}</span>
                       </div>
                     </div>
 
                     <div className="space-y-2">
                       <button className="w-full px-4 py-2 bg-green-500/20 hover:bg-green-500/30 text-green-400 rounded-lg font-medium transition-colors">
-                        Stake More
+                        {mounted && ready ? t('dashboard.stakeMore') : 'Stake More'}
                       </button>
                       <button className="w-full px-4 py-2 bg-slate-600/30 hover:bg-slate-600/50 text-gray-300 rounded-lg font-medium transition-colors">
-                        Claim Rewards
+                        {mounted && ready ? t('dashboard.claimRewards') : 'Claim Rewards'}
                       </button>
                     </div>
                   </motion.div>
