@@ -64,7 +64,7 @@ export default function SettingsPage() {
   })
 
   const handleLogout = () => {
-    localStorage.removeItem('isAuthenticated')
+    localStorage.removeItem('isLoggedIn')
     localStorage.removeItem('userEmail')
     localStorage.removeItem('userName')
     router.push('/')

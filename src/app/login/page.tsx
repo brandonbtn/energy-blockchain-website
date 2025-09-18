@@ -63,7 +63,7 @@ export default function LoginPage() {
     // Simulate login (replace with actual auth logic)
     setTimeout(() => {
       // Store auth token (in production, use secure storage)
-      localStorage.setItem('isAuthenticated', 'true')
+      localStorage.setItem('isLoggedIn', 'true')
       localStorage.setItem('userEmail', formData.email)
 
       // Redirect to dashboard

@@ -53,7 +53,7 @@ const DashboardPage = () => {
 
   // Check authentication
   useEffect(() => {
-    const isAuth = localStorage.getItem('isAuthenticated')
+    const isAuth = localStorage.getItem('isLoggedIn')
     if (!isAuth) {
       router.push('/login')
     }
@@ -64,7 +64,7 @@ const DashboardPage = () => {
   }, [])
 
   const handleLogout = () => {
-    localStorage.removeItem('isAuthenticated')
+    localStorage.removeItem('isLoggedIn')
     localStorage.removeItem('userEmail')
     localStorage.removeItem('userName')
     router.push('/')

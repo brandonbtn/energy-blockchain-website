@@ -14,7 +14,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isWalletModalOpen, setIsWalletModalOpen] = useState(false)
   const [connectedWallet, setConnectedWallet] = useState<string | null>(null)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -27,8 +27,8 @@ const Header = () => {
   }, [])
 
   useEffect(() => {
-    const auth = localStorage.getItem('isAuthenticated')
-    setIsAuthenticated(auth === 'true')
+    const auth = localStorage.getItem('isLoggedIn')
+    setIsLoggedIn(auth === 'true')
     setMounted(true)
   }, [])
 
@@ -83,8 +83,14 @@ const Header = () => {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
+            <Link
+              href="/membership"
+              className="px-4 py-2 text-green-400 hover:text-green-300 transition-colors font-medium"
+            >
+              Pricing
+            </Link>
             <LanguageSelector />
-            {isAuthenticated ? (
+            {isLoggedIn ? (
               <Link
                 href="/dashboard"
                 className="px-6 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full font-semibold hover:from-green-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105"

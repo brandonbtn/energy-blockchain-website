@@ -14,7 +14,8 @@ import {
   LogOut,
   ChevronLeft,
   Menu,
-  X
+  X,
+  Crown
 } from 'lucide-react'
 
 export default function DashboardLayout({
@@ -41,6 +42,7 @@ export default function DashboardLayout({
     { name: 'Trading', href: '/dashboard/trading', icon: TrendingUp },
     { name: 'Staking', href: '/dashboard/staking', icon: Coins },
     { name: 'Analytics', href: '/dashboard/analytics', icon: BarChart3 },
+    { name: 'Membership', href: '/dashboard/membership', icon: Crown },
     { name: 'Settings', href: '/dashboard/settings', icon: Settings }
   ]
 

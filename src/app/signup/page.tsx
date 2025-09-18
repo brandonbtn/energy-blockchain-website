@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
   Mail,
@@ -17,17 +17,35 @@ import {
   Globe,
   Wallet,
   Check,
-  X
+  X,
+  TrendingUp,
+  Briefcase,
+  Crown,
+  Star,
+  Sparkles
 } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
+
+interface MembershipTier {
+  name: string
+  price: number
+  period: string
+  description: string
+  icon: any
+  color: string
+  popular?: boolean
+  benefits: string[]
+}
 
 export default function SignupPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [step, setStep] = useState(1)
+  const [selectedTier, setSelectedTier] = useState('starter')
   const [agreedToTerms, setAgreedToTerms] = useState(false)
   const [agreedToMarketing, setAgreedToMarketing] = useState(false)
 
@@ -48,6 +66,75 @@ export default function SignupPage() {
     confirmPassword: '',
     general: ''
   })
+
+  const membershipTiers: MembershipTier[] = [
+    {
+      name: 'Starter',
+      price: 0,
+      period: 'Forever',
+      description: 'Perfect for beginners exploring renewable energy trading',
+      icon: Zap,
+      color: 'from-gray-500 to-gray-600',
+      benefits: [
+        'Basic trading features',
+        'Educational content',
+        'Community access'
+      ]
+    },
+    {
+      name: 'Growth',
+      price: 29,
+      period: '/month',
+      description: 'For active traders ready to scale their portfolio',
+      icon: TrendingUp,
+      color: 'from-blue-500 to-cyan-600',
+      benefits: [
+        'Real-time market data',
+        'Advanced analytics',
+        'API access',
+        'Tax reports'
+      ]
+    },
+    {
+      name: 'Professional',
+      price: 99,
+      period: '/month',
+      description: 'Complete toolkit for professional energy traders',
+      icon: Briefcase,
+      color: 'from-purple-500 to-pink-600',
+      popular: true,
+      benefits: [
+        'Unlimited trading',
+        'Level 2 market data',
+        'Priority support',
+        'Early access features',
+        '5% staking boost'
+      ]
+    },
+    {
+      name: 'Enterprise',
+      price: 499,
+      period: '/month',
+      description: 'Custom solutions for institutions and high-volume traders',
+      icon: Crown,
+      color: 'from-yellow-500 to-orange-600',
+      benefits: [
+        'White-glove onboarding',
+        'Dedicated manager',
+        'Custom integrations',
+        'OTC trading desk',
+        '10% staking boost'
+      ]
+    }
+  ]
+
+  // Initialize selected tier from URL params
+  useEffect(() => {
+    const tierParam = searchParams.get('tier')
+    if (tierParam) {
+      setSelectedTier(tierParam.toLowerCase())
+    }
+  }, [searchParams])
 
   const passwordRequirements = [
     { regex: /.{8,}/, text: 'At least 8 characters' },
@@ -88,6 +175,7 @@ export default function SignupPage() {
         setStep(2)
       }
     }
+    // Step 2 (membership selection) has its own navigation buttons
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -114,10 +202,11 @@ export default function SignupPage() {
 
     // Simulate signup (replace with actual auth logic)
     setTimeout(() => {
-      // Store auth token
-      localStorage.setItem('isAuthenticated', 'true')
+      // Store auth token and user data
+      localStorage.setItem('isLoggedIn', 'true')
       localStorage.setItem('userEmail', formData.email)
       localStorage.setItem('userName', formData.fullName)
+      localStorage.setItem('membershipTier', selectedTier)
 
       // Redirect to dashboard
       router.push('/dashboard')
@@ -166,16 +255,31 @@ export default function SignupPage() {
           {/* Progress Steps */}
           <div className="flex items-center justify-center mb-8">
             <div className="flex items-center space-x-4">
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                step >= 1 ? 'bg-green-500' : 'bg-slate-700'
-              }`}>
-                {step > 1 ? <Check className="h-5 w-5 text-white" /> : <span className="text-white font-semibold">1</span>}
+              <div className="flex flex-col items-center">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                  step >= 1 ? 'bg-green-500' : 'bg-slate-700'
+                }`}>
+                  {step > 1 ? <Check className="h-5 w-5 text-white" /> : <span className="text-white font-semibold">1</span>}
+                </div>
+                <span className="text-xs text-gray-400 mt-2">Personal Info</span>
               </div>
-              <div className={`w-24 h-1 ${step >= 2 ? 'bg-green-500' : 'bg-slate-700'}`} />
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                step >= 2 ? 'bg-green-500' : 'bg-slate-700'
-              }`}>
-                <span className="text-white font-semibold">2</span>
+              <div className={`w-20 h-1 ${step >= 2 ? 'bg-green-500' : 'bg-slate-700'}`} />
+              <div className="flex flex-col items-center">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                  step >= 2 ? 'bg-green-500' : 'bg-slate-700'
+                }`}>
+                  {step > 2 ? <Check className="h-5 w-5 text-white" /> : <span className="text-white font-semibold">2</span>}
+                </div>
+                <span className="text-xs text-gray-400 mt-2">Membership</span>
+              </div>
+              <div className={`w-20 h-1 ${step >= 3 ? 'bg-green-500' : 'bg-slate-700'}`} />
+              <div className="flex flex-col items-center">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                  step >= 3 ? 'bg-green-500' : 'bg-slate-700'
+                }`}>
+                  <span className="text-white font-semibold">3</span>
+                </div>
+                <span className="text-xs text-gray-400 mt-2">Security</span>
               </div>
             </div>
           </div>
@@ -278,6 +382,113 @@ export default function SignupPage() {
                   Continue
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </button>
+              </motion.div>
+            ) : step === 2 ? (
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="space-y-6"
+              >
+                <h2 className="text-xl font-semibold text-white mb-6">Choose Your Membership</h2>
+
+                {/* Selected Tier Summary */}
+                <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4 mb-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-green-400 font-semibold">Selected Plan:</h3>
+                      <p className="text-white font-bold">
+                        {membershipTiers.find(t => t.name.toLowerCase() === selectedTier)?.name} -
+                        ${membershipTiers.find(t => t.name.toLowerCase() === selectedTier)?.price}
+                        {membershipTiers.find(t => t.name.toLowerCase() === selectedTier)?.period}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-gray-400 text-sm">You can change this anytime</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Membership Tier Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {membershipTiers.map((tier) => {
+                    const Icon = tier.icon
+                    const isSelected = selectedTier === tier.name.toLowerCase()
+                    return (
+                      <motion.div
+                        key={tier.name}
+                        whileHover={{ scale: 1.02 }}
+                        onClick={() => setSelectedTier(tier.name.toLowerCase())}
+                        className={`relative cursor-pointer bg-slate-800/50 backdrop-blur-xl border rounded-xl p-4 transition-all duration-300 ${
+                          isSelected
+                            ? 'border-green-500 shadow-lg shadow-green-500/20'
+                            : 'border-slate-700 hover:border-slate-600'
+                        }`}
+                      >
+                        {tier.popular && (
+                          <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                            <div className="px-3 py-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-bold rounded-full flex items-center space-x-1">
+                              <Star className="h-3 w-3" />
+                              <span>POPULAR</span>
+                            </div>
+                          </div>
+                        )}
+
+                        <div className="flex items-start justify-between mb-3">
+                          <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${tier.color} flex items-center justify-center`}>
+                            <Icon className="h-5 w-5 text-white" />
+                          </div>
+                          {isSelected && (
+                            <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                              <Check className="h-4 w-4 text-white" />
+                            </div>
+                          )}
+                        </div>
+
+                        <h3 className="text-lg font-bold text-white mb-1">{tier.name}</h3>
+                        <p className="text-gray-400 text-sm mb-3">{tier.description}</p>
+
+                        <div className="flex items-baseline mb-4">
+                          <span className="text-2xl font-bold text-white">${tier.price}</span>
+                          <span className="text-gray-400 ml-1 text-sm">{tier.period}</span>
+                        </div>
+
+                        {/* Benefits */}
+                        <ul className="space-y-1">
+                          {tier.benefits.slice(0, 3).map((benefit, idx) => (
+                            <li key={idx} className="flex items-center space-x-2">
+                              <Check className="h-3 w-3 text-green-400 flex-shrink-0" />
+                              <span className="text-sm text-gray-300">{benefit}</span>
+                            </li>
+                          ))}
+                          {tier.benefits.length > 3 && (
+                            <li className="text-sm text-gray-500">
+                              +{tier.benefits.length - 3} more benefits
+                            </li>
+                          )}
+                        </ul>
+                      </motion.div>
+                    )
+                  })}
+                </div>
+
+                {/* Navigation Buttons */}
+                <div className="flex space-x-3">
+                  <button
+                    type="button"
+                    onClick={() => setStep(1)}
+                    className="flex-1 py-3 bg-slate-700/50 hover:bg-slate-700 text-white rounded-lg font-semibold transition-colors"
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setStep(3)}
+                    className="flex-1 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg font-semibold hover:from-green-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
+                  >
+                    Continue to Security
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </button>
+                </div>
               </motion.div>
             ) : (
               <motion.div
@@ -417,7 +628,7 @@ export default function SignupPage() {
                   </button>
                   <button
                     type="button"
-                    onClick={() => setStep(1)}
+                    onClick={() => setStep(2)}
                     className="w-full py-3 bg-slate-700/50 hover:bg-slate-700 text-white rounded-lg font-semibold transition-colors"
                   >
                     Back
