@@ -15,7 +15,8 @@ import {
   ChevronLeft,
   Menu,
   X,
-  Crown
+  Crown,
+  Wallet
 } from 'lucide-react'
 
 export default function DashboardLayout({
@@ -38,6 +39,7 @@ export default function DashboardLayout({
 
   const sidebarItems = [
     { name: 'Overview', href: '/dashboard', icon: LayoutDashboard },
+    { name: 'Wallet', href: '/dashboard/wallet', icon: Wallet },
     { name: 'Portfolio', href: '/dashboard/portfolio', icon: Briefcase },
     { name: 'Trading', href: '/dashboard/trading', icon: TrendingUp },
     { name: 'Staking', href: '/dashboard/staking', icon: Coins },

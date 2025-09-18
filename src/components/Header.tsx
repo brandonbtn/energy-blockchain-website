@@ -84,6 +84,13 @@ const Header = () => {
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <Link
+              href="/buy-tokens"
+              className="px-4 py-2 bg-green-500/20 border border-green-500/50 text-green-400 hover:bg-green-500/30 rounded-full font-medium transition-all duration-200 flex items-center space-x-2"
+            >
+              <Zap className="h-4 w-4" />
+              <span>Buy Tokens</span>
+            </Link>
+            <Link
               href="/membership"
               className="px-4 py-2 text-green-400 hover:text-green-300 transition-colors font-medium"
             >
